@@ -103,6 +103,17 @@ Defines root `#app`, loads Vue, Vuetify, Router, Axios, and includes page logic 
 
 ```js
 window.About = {
+template: `
+        <v-col cols="12" :elevation="2">
+          <v-card>
+            <v-card-title>{{ title }}</v-card-title>
+            <v-card-subtitle>{{ description }}</v-card-subtitle>
+            <v-card-text>
+              <v-data-table :items="userList"></v-data-table>
+            </v-card-text>
+          </v-card>
+        </v-col>
+  `,
   data() {
     return {
       title: "About Page",
