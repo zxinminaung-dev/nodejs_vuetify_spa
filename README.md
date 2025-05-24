@@ -46,9 +46,12 @@ npm install express
 ### Run the App
 
 ```bash
-node server.js
+npm start 
 ```
-
+or 
+```bash
+node app.js 
+```
 By default, the app runs on:
 
 ```
