@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Vuetify CSS -->
+    <link href="./assets/vuetify.min.css" rel="stylesheet" />
+    <link href="./icons/css/materialdesignicons.css" rel="stylesheet" />
+    <link href="./icons/css/materialdesignicons.css.map" rel="stylesheet" />
+    <link href="./icons/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="./icons/css/materialdesignicons.min.css.map" rel="stylesheet" />
+    <link href="./assets/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script src="./assets/vue.global.js"></script>
+    <script src="./assets/vuetify.min.js"></script>
+    <script src="./assets/vue-router.global.js"></script>
+     <script src="./assets/axios.min.js"></script>
+
+    <!-- Page components -->
+    <script src="./src/views/Home.js"></script>
+    <script src="./src/views/About.js"></script>
+    <script src="./src/views/Contact.js"></script>
+
+    <!-- Router -->
+    <script>
+        const routes = [
+            { path: '/', component: Home },
+            { path: '/about', component: About },
+            { path: '/contact', component: Contact }
+        ];
+
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(""),
+            routes,
+        });
+        router.beforeEach((to, from, next) => {
+             console.log('Navigating to:', to.path);
+            next();
+        });
+    </script>
+    <!-- App component -->
+    <script>
+        const AppComponent = {
+            template: `
+        <v-app>
+          <v-navigation-drawer v-model="navShow" :width="210">
+            <v-list color="primary">
+              <v-list-item-title class="text-h6 text-center mt-2">Menu</v-list-item-title>
+              <v-divider class=mt-4 mb-3></v-divider>
+              <v-list-item
+                v-for="item in items"
+                :key="item.to"
+                :to="item.to"
+                link
+                router
+                :prepend-icon="item.icon"
+              >
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-navigation-drawer>
+
+          <v-app-bar :elevation="2">
+            <template v-slot:prepend>
+              <v-app-bar-nav-icon @click="navShow = !navShow"></v-app-bar-nav-icon>
+            </template>
+            <v-app-bar-title>{{ title }}</v-app-bar-title>
+          </v-app-bar>
+
+          <v-main>
+            <router-view></router-view>
+          </v-main>
+        </v-app>
+      `,
+            data() {
+                return {
+                    navShow: true,
+                    title: 'Node JS Vue 3 Vuetify 3 Single Page Application',
+                    items: [
+                        { title: 'Home', to: '/', icon:'mdi-home' },
+                        { title: 'About', to: '/about', icon:'mdi-information' },
+                        { title: 'Contact', to: '/contact', icon:'mdi-email' }
+                    ]
+                };
+            }
+        };
+    </script>
+
+    <script>
+        const vuetify = Vuetify.createVuetify();
+        const app = Vue.createApp(AppComponent);
+        app.use(router);
+        app.use(vuetify);
+        app.mount('#app');
+    </script>
+</body>
+
+</body>
+
+</html>
