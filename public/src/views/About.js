@@ -23,7 +23,7 @@ window.About = {
   },
   methods: {
     GetUserList() {
-      axios.get('http://127.0.0.1:8080/api/user')
+      axios.get('https://nodejsvuetifyspa-production.up.railway.app/api/user')
         .then(response => {
           this.userList = response.data;
         })
