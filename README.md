@@ -57,7 +57,7 @@ By default, the app runs on:
 ```
 http://localhost:3500
 ```
-
+[Demo Site] (https://nodejsvuetifyspa-production.up.railway.app/)
 ## 🧩 Features
 
 - Vue 3 + Vue Router 4 (via CDN)
