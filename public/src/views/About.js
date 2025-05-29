@@ -23,7 +23,7 @@ window.About = {
   },
   methods: {
     GetUserList() {
-      axios.get('http://localhost:3500/api/user')
+      axios.get('http://127.0.0.1:8080/api/user')
         .then(response => {
           this.userList = response.data;
         })
